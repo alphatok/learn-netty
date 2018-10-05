@@ -14,6 +14,7 @@ public class IOClient {
                         socket.getOutputStream().write((Thread.currentThread().getName() + new Date() + ": hello world").getBytes());
                         Thread.sleep(2000);
                     } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             } catch (UnknownHostException e) {

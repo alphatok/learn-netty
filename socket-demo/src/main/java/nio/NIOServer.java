@@ -25,19 +25,24 @@ public class NIOServer {
                 while (true){
                     if (serverSelector.select(1) <= 0) {
                         Thread.sleep(100);
+                        continue;
                     }
 
                     Set<SelectionKey> set = serverSelector.selectedKeys();
                     Iterator<SelectionKey> keyIterator = set.iterator();
                     while (keyIterator.hasNext()) {
                         SelectionKey key = keyIterator.next();
-                        if (key.isAcceptable()) {
+                        if (!key.isAcceptable()) {
                             continue;
                         }
 
                         try {
                             // (1) 每来一个新连接，不需要创建一个线程，而是直接注册到clientSelector
                             SocketChannel clientChannel = ((ServerSocketChannel) key.channel()).accept();
+                            InetSocketAddress remoteSocketAddress = (InetSocketAddress) clientChannel.getRemoteAddress();
+                            System.out.println(remoteSocketAddress.getPort());
+                            System.out.println(remoteSocketAddress.getHostName());
+                            System.out.println(remoteSocketAddress.getAddress());
                             clientChannel.configureBlocking(false);
                             clientChannel.register(clientSelector, SelectionKey.OP_READ);
                         } finally {
@@ -66,7 +71,7 @@ public class NIOServer {
                     while (keyIterator.hasNext()) {
                         SelectionKey key = keyIterator.next();
 
-                        if (key.isReadable()) {
+                        if (!key.isReadable()) {
                             continue;
                         }
 

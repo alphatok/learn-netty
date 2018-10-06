@@ -5,6 +5,7 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -61,6 +62,7 @@ public class NIOServer {
         new Thread(()->{
             try {
                 while (true){
+                    // epoll 空轮询 bug 会导致 cpu 飙升 100%
                     if (clientSelector.select(1) <= 0) {
                         Thread.sleep(1000);
                         continue;
@@ -81,8 +83,8 @@ public class NIOServer {
                             // (3) 读取数据以块为单位批量读取
                             clientChannel.read(byteBuffer);
                             byteBuffer.flip();
-                            System.out.println(Charset.defaultCharset().newDecoder().decode(byteBuffer)
-                                    .toString());
+                            CharsetDecoder charsetDecoder = Charset.defaultCharset().newDecoder();
+                            System.out.println(charsetDecoder.decode(byteBuffer).toString());
                         } finally {
                             keyIterator.remove();
                             key.interestOps(SelectionKey.OP_READ);

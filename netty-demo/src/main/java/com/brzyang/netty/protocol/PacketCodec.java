@@ -1,7 +1,9 @@
 package com.brzyang.netty.protocol;
 
 import com.brzyang.netty.protocol.request.LoginRequestPacket;
+import com.brzyang.netty.protocol.request.MessageRequestPacket;
 import com.brzyang.netty.protocol.response.LoginResponsePacket;
+import com.brzyang.netty.protocol.response.MessageResponsePacket;
 import com.brzyang.netty.protocol.serialize.Serializer;
 import com.brzyang.netty.protocol.serialize.impl.JSONSerializer;
 import io.netty.buffer.ByteBuf;
@@ -10,8 +12,7 @@ import io.netty.buffer.ByteBufAllocator;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.brzyang.netty.protocol.command.Command.LOGIN_REQUEST;
-import static com.brzyang.netty.protocol.command.Command.LOGIN_RESPONSE;
+import static com.brzyang.netty.protocol.command.Command.*;
 
 public class PacketCodec {
     private static final int MAGIC_NUMBER = 0x12345678;
@@ -25,6 +26,8 @@ public class PacketCodec {
         packetTypeMap = new HashMap<>();
         packetTypeMap.put(LOGIN_REQUEST, LoginRequestPacket.class);
         packetTypeMap.put(LOGIN_RESPONSE, LoginResponsePacket.class);
+        packetTypeMap.put(MESSAGE_REQUEST, MessageRequestPacket.class);
+        packetTypeMap.put(MESSAGE_RESPONSE, MessageResponsePacket.class);
 
         serializerMap = new HashMap<>();
         Serializer serializer = new JSONSerializer();

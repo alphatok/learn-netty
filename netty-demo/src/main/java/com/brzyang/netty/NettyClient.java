@@ -24,7 +24,8 @@ public class NettyClient {
                 .handler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel ch) {
-                        ch.pipeline().addLast(new StringEncoder());
+//                        ch.pipeline().addLast(new StringEncoder());
+                        ch.pipeline().addLast(new FirstClientHandler());
                     }
                 });
 
@@ -36,11 +37,12 @@ public class NettyClient {
 
 
         Channel channel = connect(bootstrap, "127.0.0.1", 8000, MAX_RETRY);
-
+        /*
+        String 类型handler处理
         while (true) {
             channel.writeAndFlush(new Date() + ": hello world!");
             Thread.sleep(2000);
-        }
+        }*/
     }
 
     private static Channel connect(Bootstrap bootstrap, String host, int port, int retry) {

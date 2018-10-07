@@ -33,13 +33,17 @@ public class NettyServer {
 
         serverBootstrap.childHandler(new ChannelInitializer<NioSocketChannel>() {
             protected void initChannel(NioSocketChannel ch) {
+                /*
                 ch.pipeline().addLast(new StringDecoder());
+                // 责任链-StringDecoder转为String，后续handler处理String
                 ch.pipeline().addLast(new SimpleChannelInboundHandler<String>() {
                     @Override
                     protected void channelRead0(ChannelHandlerContext ctx, String msg) {
                         System.out.println(msg);
                     }
                 });
+                */
+                ch.pipeline().addLast(new FirstServerHandler());
             }
         });
         serverBootstrap.childAttr(AttributeKey.newInstance("clientKey"), "clientValue");

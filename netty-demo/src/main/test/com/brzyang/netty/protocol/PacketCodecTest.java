@@ -1,5 +1,6 @@
 package com.brzyang.netty.protocol;
 
+import com.brzyang.netty.protocol.request.LoginRequestPacket;
 import com.brzyang.netty.protocol.serialize.Serializer;
 import com.brzyang.netty.protocol.serialize.impl.JSONSerializer;
 import io.netty.buffer.ByteBuf;

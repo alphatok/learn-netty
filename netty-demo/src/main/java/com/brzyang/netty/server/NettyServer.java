@@ -28,6 +28,7 @@ public class NettyServer {
                         System.out.println("服务端启动中, 通常不需要");
                     }
                 });
+
         serverBootstrap.attr(AttributeKey.newInstance("serverName"), "nettyServer");
 
         serverBootstrap.childHandler(new ChannelInitializer<NioSocketChannel>() {
@@ -42,7 +43,8 @@ public class NettyServer {
                     }
                 });
                 */
-                ch.pipeline().addLast(new FirstServerHandler());
+//                ch.pipeline().addLast(new FirstServerHandler());
+                ch.pipeline().addLast(new ServerHandler());
             }
         });
         serverBootstrap.childAttr(AttributeKey.newInstance("clientKey"), "clientValue");

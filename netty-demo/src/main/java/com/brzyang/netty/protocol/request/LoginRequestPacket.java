@@ -1,4 +1,7 @@
-package com.brzyang.netty.protocol;
+package com.brzyang.netty.protocol.request;
+
+import com.brzyang.netty.protocol.command.Command;
+import com.brzyang.netty.protocol.Packet;
 
 public class LoginRequestPacket extends Packet {
 

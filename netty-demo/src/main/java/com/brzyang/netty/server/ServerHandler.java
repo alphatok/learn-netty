@@ -23,7 +23,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
 
         // 判断是否是登录请求数据包
 
-
+        // 模板方法, channel放入FastThreadLocal；反射；策略模式、状态模式、卫语句
         if (packet instanceof LoginRequestPacket) {
             LoginResponsePacket loginResponsePacket = new LoginResponsePacket();
             loginResponsePacket.setVersion(packet.getVersion());

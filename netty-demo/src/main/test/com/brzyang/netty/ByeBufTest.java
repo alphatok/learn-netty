@@ -5,7 +5,6 @@ import io.netty.buffer.ByteBufAllocator;
 
 import java.math.BigInteger;
 
-import static jdk.nashorn.internal.objects.Global.print;
 
 public class ByeBufTest {
 

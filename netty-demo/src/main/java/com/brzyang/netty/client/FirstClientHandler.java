@@ -1,4 +1,4 @@
-package com.brzyang.netty;
+package com.brzyang.netty.client;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

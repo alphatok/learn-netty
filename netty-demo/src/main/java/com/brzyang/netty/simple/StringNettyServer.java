@@ -9,7 +9,7 @@ import io.netty.handler.codec.string.StringDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleNettyServer extends BaseNettyServer {
+public class StringNettyServer extends BaseNettyServer {
 
     public static void main(String[] args) {
         List<ChannelHandler> channels = new ArrayList();

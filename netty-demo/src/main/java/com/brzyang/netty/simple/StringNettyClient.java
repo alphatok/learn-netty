@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-public class SimpleNettyClient extends BaseNettyClient {
+public class StringNettyClient extends BaseNettyClient {
     public static void main(String[] args) throws InterruptedException {
         List<ChannelHandler> channels = Collections.singletonList(new StringEncoder());
         Channel channel = initClient(channels);

@@ -12,7 +12,6 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -65,5 +64,22 @@ public class BaseNettyClient {
 
         return channel;
     }
+    protected static void startProtocolConsoleThread(Channel channel) {
+        new Thread(() -> {
+            while (!Thread.interrupted()) {
+                if (LoginUtil.hasLogin(channel)) {
+                    System.out.println("输入消息发送至服务端: ");
+                    Scanner sc = new Scanner(System.in);
+                    String line = sc.nextLine();
+
+                    MessageRequestPacket packet = new MessageRequestPacket();
+                    packet.setMessage(line);
+                    ByteBuf byteBuf = PacketCodec.INSTANCE.encode(channel.alloc(), packet);
+                    channel.writeAndFlush(byteBuf);
+                }
+            }
+        }).start();
+    }
+
 
 }

@@ -1,6 +1,5 @@
 package com.brzyang.netty.chainedhandler.client;
 
-import com.brzyang.netty.protocol.request.MessageRequestPacket;
 import com.brzyang.netty.protocol.response.MessageResponsePacket;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

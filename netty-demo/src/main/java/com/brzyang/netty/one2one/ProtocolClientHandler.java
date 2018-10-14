@@ -1,8 +1,8 @@
 package com.brzyang.netty.one2one;
 
 import com.brzyang.netty.protocol.Packet;
-import com.brzyang.netty.protocol.request.LoginRequestPacket;
 import com.brzyang.netty.protocol.PacketCodec;
+import com.brzyang.netty.protocol.request.LoginRequestPacket;
 import com.brzyang.netty.protocol.response.LoginResponsePacket;
 import com.brzyang.netty.protocol.response.MessageResponsePacket;
 import com.brzyang.netty.util.LoginUtil;

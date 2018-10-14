@@ -1,18 +1,12 @@
 package com.brzyang.netty.one2one;
 
 import com.brzyang.netty.base.BaseNettyClient;
-import com.brzyang.netty.protocol.PacketCodec;
-import com.brzyang.netty.protocol.request.MessageRequestPacket;
-import com.brzyang.netty.util.LoginUtil;
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 public class ProtocolOne2OneNettyClient extends BaseNettyClient {
 

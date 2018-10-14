@@ -2,26 +2,19 @@ package com.brzyang.netty.one2one;
 
 
 import com.brzyang.netty.base.BaseNettyServer;
+import io.netty.channel.ChannelHandler;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProtocolOne2OneNettyServer extends BaseNettyServer {
 
-      /*
-                ch.pipeline().addLast(new StringDecoder());
-                // 责任链-StringDecoder转为String，后续handler处理String
-                ch.pipeline().addLast(new SimpleChannelInboundHandler<String>() {
-                    @Override
-                    protected void channelRead0(ChannelHandlerContext ctx, String msg) {
-                        System.out.println(msg);
-                    }
-                });
-                */
-//                ch.pipeline().addLast(new CustomStringServerHandler());
-
-
     public static void main(String[] args) {
-       initNettyServer(Collections.singletonList(new ProtocolServerHandler()));
+        List<ChannelHandler> channels = new ArrayList<>();
+        channels.add(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 7, 4));
+        channels.add(new ProtocolServerHandler());
+       initNettyServer(channels);
 
     }
 }

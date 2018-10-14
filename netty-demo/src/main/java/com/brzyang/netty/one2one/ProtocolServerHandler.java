@@ -1,4 +1,4 @@
-package com.brzyang.netty.server;
+package com.brzyang.netty.one2one;
 
 import com.brzyang.netty.protocol.Packet;
 import com.brzyang.netty.protocol.PacketCodec;
@@ -13,7 +13,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 
 import java.util.Date;
 
-public class ServerHandler extends ChannelInboundHandlerAdapter {
+public class ProtocolServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf requestByteBuf = (ByteBuf) msg;
@@ -48,7 +48,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
             System.out.println(new Date() + ": 收到客户端消息: " + messageRequestPacket.getMessage());
 
             MessageResponsePacket messageResponsePacket = new MessageResponsePacket();
-            messageResponsePacket.setMessage("服务端回复【" + messageRequestPacket.getMessage() + "】");
+            messageResponsePacket.setMessage("服务端回复【" + messageRequestPacket.getMessage() + "】 ack");
             ByteBuf responseByteBuf = PacketCodec.INSTANCE.encode(ctx.alloc(), messageResponsePacket);
             ctx.channel().writeAndFlush(responseByteBuf);
         }
@@ -56,7 +56,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     }
 
     private boolean valid(LoginRequestPacket loginRequestPacket) {
-        System.out.println(loginRequestPacket.getUserId() + " valid login");
+        System.out.println(loginRequestPacket.getUserId() + " valid one2one");
         return true;
     }
 }

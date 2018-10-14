@@ -1,6 +1,5 @@
 package com.brzyang.netty.base;
 
-import com.brzyang.netty.server.ServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;

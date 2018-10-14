@@ -1,4 +1,4 @@
-package com.brzyang.netty.client;
+package com.brzyang.netty.one2one;
 
 import com.brzyang.netty.protocol.Packet;
 import com.brzyang.netty.protocol.request.LoginRequestPacket;
@@ -13,7 +13,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import java.util.Date;
 import java.util.Random;
 
-public class ClientHandler extends ChannelInboundHandlerAdapter {
+public class ProtocolClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println(new Date() + ": 客户端开始登录");

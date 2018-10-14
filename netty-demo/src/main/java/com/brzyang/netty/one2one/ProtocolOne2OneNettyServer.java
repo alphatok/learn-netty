@@ -1,11 +1,11 @@
-package com.brzyang.netty.server;
+package com.brzyang.netty.one2one;
 
 
 import com.brzyang.netty.base.BaseNettyServer;
 
 import java.util.Collections;
 
-public class NettyServer extends BaseNettyServer {
+public class ProtocolOne2OneNettyServer extends BaseNettyServer {
 
       /*
                 ch.pipeline().addLast(new StringDecoder());
@@ -21,7 +21,7 @@ public class NettyServer extends BaseNettyServer {
 
 
     public static void main(String[] args) {
-       initNettyServer(Collections.singletonList(new ServerHandler()));
+       initNettyServer(Collections.singletonList(new ProtocolServerHandler()));
 
     }
 }

@@ -66,18 +66,4 @@ public class BaseNettyClient {
         return channel;
     }
 
-    protected static void startStringConsoleThread(Channel channel) {
-        new Thread(() -> {
-            while (!Thread.interrupted()) {
-                    System.out.println("输入消息发送至服务端: ");
-                    Scanner sc = new Scanner(System.in);
-                    String line = sc.nextLine();
-
-                    ByteBuf buffer = channel.alloc().buffer();
-                    buffer.writeBytes(line.getBytes(StandardCharsets.UTF_8));
-
-                    channel.writeAndFlush(buffer);
-            }
-        }).start();
-    }
 }

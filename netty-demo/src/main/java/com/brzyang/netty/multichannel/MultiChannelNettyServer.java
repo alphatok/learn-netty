@@ -1,12 +1,12 @@
-package com.brzyang.netty.channel;
+package com.brzyang.netty.multichannel;
 
 import com.brzyang.netty.base.BaseNettyServer;
-import com.brzyang.netty.channel.inbound.InBoundHandlerA;
-import com.brzyang.netty.channel.inbound.InBoundHandlerB;
-import com.brzyang.netty.channel.inbound.InBoundHandlerC;
-import com.brzyang.netty.channel.outbount.OutBoundHandlerA;
-import com.brzyang.netty.channel.outbount.OutBoundHandlerB;
-import com.brzyang.netty.channel.outbount.OutBoundHandlerC;
+import com.brzyang.netty.multichannel.inbound.InBoundHandlerA;
+import com.brzyang.netty.multichannel.inbound.InBoundHandlerB;
+import com.brzyang.netty.multichannel.inbound.InBoundHandlerC;
+import com.brzyang.netty.multichannel.outbount.OutBoundHandlerA;
+import com.brzyang.netty.multichannel.outbount.OutBoundHandlerB;
+import com.brzyang.netty.multichannel.outbount.OutBoundHandlerC;
 import io.netty.channel.ChannelHandler;
 
 import java.util.ArrayList;

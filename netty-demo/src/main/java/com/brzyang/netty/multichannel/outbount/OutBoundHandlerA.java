@@ -1,7 +1,6 @@
-package com.brzyang.netty.channel.outbount;
+package com.brzyang.netty.multichannel.outbount;
 
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelOutboundHandlerAdapter;
 import io.netty.channel.ChannelPromise;
 

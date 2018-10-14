@@ -1,6 +1,10 @@
 package com.brzyang.netty.base;
 
+import com.brzyang.netty.protocol.PacketCodec;
+import com.brzyang.netty.protocol.request.MessageRequestPacket;
+import com.brzyang.netty.util.LoginUtil;
 import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;
@@ -8,8 +12,10 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class BaseNettyClient {
@@ -58,5 +64,20 @@ public class BaseNettyClient {
         }).channel();
 
         return channel;
+    }
+
+    protected static void startStringConsoleThread(Channel channel) {
+        new Thread(() -> {
+            while (!Thread.interrupted()) {
+                    System.out.println("输入消息发送至服务端: ");
+                    Scanner sc = new Scanner(System.in);
+                    String line = sc.nextLine();
+
+                    ByteBuf buffer = channel.alloc().buffer();
+                    buffer.writeBytes(line.getBytes(StandardCharsets.UTF_8));
+
+                    channel.writeAndFlush(buffer);
+            }
+        }).start();
     }
 }

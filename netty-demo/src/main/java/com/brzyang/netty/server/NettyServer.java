@@ -2,14 +2,6 @@ package com.brzyang.netty.server;
 
 
 import com.brzyang.netty.base.BaseNettyServer;
-import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.*;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.util.AttributeKey;
-import io.netty.util.concurrent.Future;
-import io.netty.util.concurrent.GenericFutureListener;
 
 import java.util.Collections;
 
@@ -25,7 +17,7 @@ public class NettyServer extends BaseNettyServer {
                     }
                 });
                 */
-//                ch.pipeline().addLast(new FirstServerHandler());
+//                ch.pipeline().addLast(new CustomStringServerHandler());
 
 
     public static void main(String[] args) {

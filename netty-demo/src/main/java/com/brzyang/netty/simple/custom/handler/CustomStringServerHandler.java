@@ -1,4 +1,4 @@
-package com.brzyang.netty.server;
+package com.brzyang.netty.simple.custom.handler;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -7,7 +7,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import java.nio.charset.Charset;
 import java.util.Date;
 
-public class FirstServerHandler extends ChannelInboundHandlerAdapter {
+public class CustomStringServerHandler extends ChannelInboundHandlerAdapter {
 
     /***
      * 客户端连接建立成功之后被调用

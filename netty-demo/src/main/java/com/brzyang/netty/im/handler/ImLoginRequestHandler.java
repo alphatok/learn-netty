@@ -15,14 +15,13 @@ public class ImLoginRequestHandler extends SimpleChannelInboundHandler<LoginRequ
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket msg) throws Exception {
         // auto encode
-        System.out.println(new Date() + ": 收到客户端登录请求……" + msg.getUsername()) ;
         LoginUtil.markAsLogin(ctx.channel());
         LoginResponsePacket loginResponse = login(msg);
 
         Session session = new Session(loginResponse.getUserId(), loginResponse.getUsername());
         SessionUtil.bindSession(session, ctx.channel());
-        System.out.println(new Date() + ": session stored……");
-
+        System.out.println(new Date() + "【" + msg.getUsername() + "】登录成功");
+        System.out.println(new Date() + "【" + msg.getUsername() + "】session saved……");
         ctx.channel().writeAndFlush(loginResponse);
     }
 
@@ -38,8 +37,9 @@ public class ImLoginRequestHandler extends SimpleChannelInboundHandler<LoginRequ
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        Session session = SessionUtil.getSession(ctx.channel());
+        System.out.println(new Date() + "【" + session.getUsername() + "】session cleared……");
         SessionUtil.unBindSession(ctx.channel());
-        System.out.println(new Date() + ": session cleared……");
         super.channelInactive(ctx);
     }
 }

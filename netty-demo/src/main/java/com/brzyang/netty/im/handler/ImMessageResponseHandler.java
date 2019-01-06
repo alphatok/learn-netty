@@ -11,10 +11,8 @@ import java.util.Date;
 public class ImMessageResponseHandler extends SimpleChannelInboundHandler<MessageResponsePacket> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, MessageResponsePacket msg) throws Exception {
-        String fromUserId = msg.getFromUserId();
         String fromUserName = msg.getFromUsername();
-        System.out.println(fromUserId + ":" + fromUserName + " -> " + msg.getMessage());
-        System.out.println(new Date() + ": 收到客户端消息: " + msg.getMessage());
+        System.out.println(new Date() + ": 收到消息(from " + fromUserName + "): " + msg.getMessage());
     }
 
 }

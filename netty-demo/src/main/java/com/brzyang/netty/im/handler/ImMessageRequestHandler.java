@@ -27,6 +27,8 @@ public class ImMessageRequestHandler extends SimpleChannelInboundHandler<Message
 
         // 4.将消息发送给消息接收方
         if (toUserChannel != null && LoginUtil.hasLogin(toUserChannel)) {
+            Session toSession = SessionUtil.getSession(toUserChannel);
+            System.out.println("【" + session.getUsername() + "】-->>【" + toSession.getUsername() + "】 " + msg.getMessage());
             toUserChannel.writeAndFlush(responsePacket);
         } else {
             System.err.println("[" + msg.getToUserId() + "] 不在线，发送失败!");
@@ -37,7 +39,7 @@ public class ImMessageRequestHandler extends SimpleChannelInboundHandler<Message
         MessageResponsePacket response = new MessageResponsePacket();
         response.setFromUserId(session.getUserId());
         response.setFromUsername(session.getUsername());
-        response.setMessage("服务端回复【" + msg.getMessage() + "】 auto reply");
+        response.setMessage(msg.getMessage());
         return response;
     }
 }

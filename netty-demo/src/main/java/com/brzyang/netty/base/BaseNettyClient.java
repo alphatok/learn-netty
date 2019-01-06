@@ -64,6 +64,7 @@ public class BaseNettyClient {
 
         return channel;
     }
+
     protected static void startProtocolConsoleThread(Channel channel) {
         new Thread(() -> {
             while (!Thread.interrupted()) {

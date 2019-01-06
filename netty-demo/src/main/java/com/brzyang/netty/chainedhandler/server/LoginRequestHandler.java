@@ -17,6 +17,7 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
         // auto encode
         System.out.println(new Date() + ": 收到客户端登录请求……");
         ctx.channel().writeAndFlush(login(msg));
+        // 如果无，会被强制关闭连接
         LoginUtil.markAsLogin(ctx.channel());
     }
 

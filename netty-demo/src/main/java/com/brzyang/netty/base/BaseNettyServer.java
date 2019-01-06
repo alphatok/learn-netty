@@ -37,7 +37,15 @@ public class BaseNettyServer {
         serverBootstrap.childHandler(new ChannelInitializer<NioSocketChannel>() {
             protected void initChannel(NioSocketChannel ch) {
                 for (ChannelHandler handler : handlers) {
-                    ch.pipeline().addLast(handler);
+                    ChannelHandler channelHandler = null;
+                    try {
+                        channelHandler = handler.getClass().newInstance();
+                        ch.pipeline().addLast(channelHandler);
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

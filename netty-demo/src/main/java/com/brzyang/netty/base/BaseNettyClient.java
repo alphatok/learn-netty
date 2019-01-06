@@ -33,7 +33,15 @@ public class BaseNettyClient {
                     @Override
                     protected void initChannel(NioSocketChannel ch) {
                         for (ChannelHandler channel : channels) {
-                            ch.pipeline().addLast(channel);
+                            ChannelHandler channelHandler = null;
+                            try {
+                                channelHandler = channel.getClass().newInstance();
+                            } catch (InstantiationException e) {
+                                e.printStackTrace();
+                            } catch (IllegalAccessException e) {
+                                e.printStackTrace();
+                            }
+                            ch.pipeline().addLast(channelHandler);
                         }
                     }
                 });

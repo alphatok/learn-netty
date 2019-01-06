@@ -6,8 +6,8 @@ import com.brzyang.netty.chainedhandler.PacketEncoder;
 import com.brzyang.netty.im.handler.ImAuthHandler;
 import com.brzyang.netty.im.handler.ImLoginRequestHandler;
 import com.brzyang.netty.im.handler.ImMessageRequestHandler;
+import com.brzyang.netty.im.handler.Splitter;
 import io.netty.channel.ChannelHandler;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
 public class ImNettyServer extends BaseNettyServer {
     public static void main(String[] args) {
         List<ChannelHandler> channels = new ArrayList<>();
-//        channels.add(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 7, 4));
+        channels.add(new Splitter());
         channels.add(new PacketDecoder());
         channels.add(new ImLoginRequestHandler());
         channels.add(new ImAuthHandler());

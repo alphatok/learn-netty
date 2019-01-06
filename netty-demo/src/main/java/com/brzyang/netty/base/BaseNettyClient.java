@@ -1,6 +1,7 @@
 package com.brzyang.netty.base;
 
 import com.brzyang.netty.protocol.PacketCodec;
+import com.brzyang.netty.protocol.request.LoginRequestPacket;
 import com.brzyang.netty.protocol.request.MessageRequestPacket;
 import com.brzyang.netty.util.LoginUtil;
 import io.netty.bootstrap.Bootstrap;
@@ -14,6 +15,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -66,21 +68,43 @@ public class BaseNettyClient {
     }
 
     protected static void startProtocolConsoleThread(Channel channel) {
+
+
         new Thread(() -> {
             while (!Thread.interrupted()) {
+                Scanner sc = new Scanner(System.in);
                 if (LoginUtil.hasLogin(channel)) {
-                    System.out.println("输入消息发送至服务端: ");
-                    Scanner sc = new Scanner(System.in);
-                    String line = sc.nextLine();
-
+                    System.out.print("输入目标用户名: ");
+                    String toUserId = sc.next();
+                    System.out.print("输入消息: ");
+                    String message = sc.next();
                     MessageRequestPacket packet = new MessageRequestPacket();
-                    packet.setMessage(line);
+                    packet.setToUserId(toUserId);
+                    packet.setMessage(message);
                     ByteBuf byteBuf = PacketCodec.INSTANCE.encode(channel.alloc(), packet);
                     channel.writeAndFlush(byteBuf);
+                }else {
+                    LoginRequestPacket loginRequestPacket = new LoginRequestPacket();
+                    System.out.print("输入用户名登录: ");
+                    String username = sc.nextLine();
+                    loginRequestPacket.setUsername(username);
+                    loginRequestPacket.setUserId(username);
+                    // 密码使用默认的
+                    loginRequestPacket.setPassword("pwd");
+
+                    // 发送登录数据包
+                    channel.writeAndFlush(loginRequestPacket);
+                    waitForLoginResponse();
                 }
             }
         }).start();
     }
 
+    private static void waitForLoginResponse() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ignored) {
+        }
+    }
 
 }

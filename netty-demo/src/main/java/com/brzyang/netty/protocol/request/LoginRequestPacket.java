@@ -5,16 +5,16 @@ import com.brzyang.netty.protocol.command.Command;
 
 public class LoginRequestPacket extends Packet {
 
-    private Integer userId;
+    private String userId;
     private String username;
     private String password;
 
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

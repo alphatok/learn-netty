@@ -20,7 +20,7 @@ public class ProtocolClientHandler extends ChannelInboundHandlerAdapter {
 
         // 创建登录对象
         LoginRequestPacket loginRequestPacket = new LoginRequestPacket();
-        loginRequestPacket.setUserId(Math.abs(new Random().nextInt()));
+        loginRequestPacket.setUserId(String.valueOf(Math.abs(new Random().nextInt())));
         loginRequestPacket.setUsername("flash");
         loginRequestPacket.setPassword("pwd");
 

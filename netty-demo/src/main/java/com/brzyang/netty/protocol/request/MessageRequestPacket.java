@@ -5,6 +5,15 @@ import com.brzyang.netty.protocol.command.Command;
 
 public class MessageRequestPacket extends Packet {
     private String message;
+    private String toUserId;
+
+    public String getToUserId() {
+        return toUserId;
+    }
+
+    public void setToUserId(String toUserId) {
+        this.toUserId = toUserId;
+    }
 
     public String getMessage() {
         return message;

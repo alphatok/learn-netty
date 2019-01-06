@@ -3,9 +3,9 @@ package com.brzyang.netty.im.server;
 import com.brzyang.netty.base.BaseNettyServer;
 import com.brzyang.netty.chainedhandler.PacketDecoder;
 import com.brzyang.netty.chainedhandler.PacketEncoder;
-import com.brzyang.netty.chainedhandler.server.LoginRequestHandler;
-import com.brzyang.netty.chainedhandler.server.MessageRequestHandler;
-import com.brzyang.netty.im.handler.AuthHandler;
+import com.brzyang.netty.im.handler.ImAuthHandler;
+import com.brzyang.netty.im.handler.ImLoginRequestHandler;
+import com.brzyang.netty.im.handler.ImMessageRequestHandler;
 import io.netty.channel.ChannelHandler;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 
@@ -15,11 +15,11 @@ import java.util.List;
 public class ImNettyServer extends BaseNettyServer {
     public static void main(String[] args) {
         List<ChannelHandler> channels = new ArrayList<>();
-        channels.add(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 7, 4));
+//        channels.add(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 7, 4));
         channels.add(new PacketDecoder());
-        channels.add(new LoginRequestHandler());
-        channels.add(new AuthHandler());
-        channels.add(new MessageRequestHandler());
+        channels.add(new ImLoginRequestHandler());
+        channels.add(new ImAuthHandler());
+        channels.add(new ImMessageRequestHandler());
         channels.add(new PacketEncoder());
         initNettyServer(channels);
     }

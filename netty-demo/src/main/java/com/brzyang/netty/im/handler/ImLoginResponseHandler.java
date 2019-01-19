@@ -5,19 +5,25 @@ import com.brzyang.netty.protocol.response.LoginResponsePacket;
 import com.brzyang.netty.util.LoginUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 import java.util.Random;
 
 public class ImLoginResponseHandler extends SimpleChannelInboundHandler<LoginResponsePacket> {
+
+    private static Logger logger = LoggerFactory.getLogger(ImLoginResponseHandler.class);
+
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginResponsePacket msg) throws Exception {
 
         if (msg.getSuccess()) {
-            System.out.println(new Date() + ": 客户端登录成功" + msg.getUsername());
+            logger.info("userId:{}  username:{} login succ", msg.getUserId(), msg.getUsername());
             LoginUtil.markAsLogin(ctx.channel());
         } else {
-            System.out.println(new Date() + ": 客户端登录失败，原因：" + msg.getReason());
+            logger.error("userId:{}  username:{} login failed, reason:{}",
+                    msg.getUserId(), msg.getUsername(), msg.getReason());
         }
     }
 
@@ -37,7 +43,7 @@ public class ImLoginResponseHandler extends SimpleChannelInboundHandler<LoginRes
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("客户端连接被关闭!");
+        logger.info("客户端连接被关闭!");
         super.channelInactive(ctx);
     }
 }

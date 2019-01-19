@@ -7,10 +7,13 @@ import com.brzyang.netty.util.LoginUtil;
 import com.brzyang.netty.util.SessionUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.Date;
 
 public class ImLoginRequestHandler extends SimpleChannelInboundHandler<LoginRequestPacket> {
+
+    private static Logger logger = LoggerFactory.getLogger(ImLoginRequestHandler.class);
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket msg) throws Exception {
@@ -20,8 +23,8 @@ public class ImLoginRequestHandler extends SimpleChannelInboundHandler<LoginRequ
 
         Session session = new Session(loginResponse.getUserId(), loginResponse.getUsername());
         SessionUtil.bindSession(session, ctx.channel());
-        System.out.println(new Date() + "【" + msg.getUsername() + "】登录成功");
-        System.out.println(new Date() + "【" + msg.getUsername() + "】session saved……");
+        logger.info("userId:{}  username:{} login succ", msg.getUserId(), msg.getUsername());
+        logger.info("userId:{}  username:{} session saved", msg.getUserId(), msg.getUsername());
         ctx.channel().writeAndFlush(loginResponse);
     }
 
@@ -38,7 +41,7 @@ public class ImLoginRequestHandler extends SimpleChannelInboundHandler<LoginRequ
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         Session session = SessionUtil.getSession(ctx.channel());
-        System.out.println(new Date() + "【" + session.getUsername() + "】session cleared……");
+        logger.info("userId:{}  username:{} session cleared", session.getUserId(), session.getUsername());
         SessionUtil.unBindSession(ctx.channel());
         super.channelInactive(ctx);
     }

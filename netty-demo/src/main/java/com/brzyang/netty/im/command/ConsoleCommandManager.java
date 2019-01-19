@@ -1,6 +1,9 @@
 package com.brzyang.netty.im.command;
 
+import com.brzyang.netty.im.handler.ImLoginRequestHandler;
 import io.netty.channel.Channel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +11,8 @@ import java.util.Scanner;
 
 public class ConsoleCommandManager implements ConsoleCommand{
     private Map<String, ConsoleCommand> consoleCommandMap;
+
+    private static Logger logger = LoggerFactory.getLogger(ConsoleCommandManager.class);
 
     public ConsoleCommandManager() {
         consoleCommandMap = new HashMap<>();
@@ -27,7 +32,7 @@ public class ConsoleCommandManager implements ConsoleCommand{
         if (consoleCommand != null) {
             consoleCommand.exec(scanner, channel);
         } else {
-            System.err.println("无法识别[" + command + "]指令，请重新输入!");
+            logger.error("unknown command:{} try again!", command);
         }
     }
 }

@@ -1,8 +1,10 @@
 package com.brzyang.netty.protocol;
 
 import com.brzyang.netty.protocol.request.LoginRequestPacket;
+import com.brzyang.netty.protocol.request.LogoutRequestPacket;
 import com.brzyang.netty.protocol.request.MessageRequestPacket;
 import com.brzyang.netty.protocol.response.LoginResponsePacket;
+import com.brzyang.netty.protocol.response.LogoutResponsePacket;
 import com.brzyang.netty.protocol.response.MessageResponsePacket;
 import com.brzyang.netty.protocol.serialize.Serializer;
 import com.brzyang.netty.protocol.serialize.impl.JSONSerializer;
@@ -28,6 +30,8 @@ public class PacketCodec {
         packetTypeMap.put(LOGIN_RESPONSE, LoginResponsePacket.class);
         packetTypeMap.put(MESSAGE_REQUEST, MessageRequestPacket.class);
         packetTypeMap.put(MESSAGE_RESPONSE, MessageResponsePacket.class);
+        packetTypeMap.put(LOGOUT_REQUEST, LogoutRequestPacket.class);
+        packetTypeMap.put(LOGOUT_RESPONSE, LogoutResponsePacket.class);
 
         //  TODO
         serializerMap = new HashMap<>();

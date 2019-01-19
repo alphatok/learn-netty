@@ -15,4 +15,7 @@ public interface Command {
 
     Byte LIST_GROUP_REQUEST = 11;
     Byte LIST_GROUP_RESPONSE = 12;
+
+    Byte LOGOUT_REQUEST = 13;
+    Byte LOGOUT_RESPONSE = 14;
 }

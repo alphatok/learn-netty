@@ -6,6 +6,7 @@ import com.brzyang.netty.chainedhandler.PacketEncoder;
 import com.brzyang.netty.im.command.ConsoleCommandManager;
 import com.brzyang.netty.im.command.LoginConsoleCommand;
 import com.brzyang.netty.im.handler.ImLoginResponseHandler;
+import com.brzyang.netty.im.handler.ImLogoutResponseHandler;
 import com.brzyang.netty.im.handler.Splitter;
 import com.brzyang.netty.util.LoginUtil;
 import io.netty.channel.Channel;
@@ -21,6 +22,7 @@ public class ImNettyClient extends BaseNettyClient {
         channels.add(new Splitter());
         channels.add(new PacketDecoder());
         channels.add(new ImLoginResponseHandler());
+        channels.add(new ImLogoutResponseHandler());
 //        channels.add(new ImMessageResponseHandler());
 //        channels.add(new CreateGroupResponseHandler());
         channels.add(new PacketEncoder());
@@ -33,7 +35,7 @@ public class ImNettyClient extends BaseNettyClient {
         LoginConsoleCommand loginConsoleCommand = new LoginConsoleCommand();
         Scanner scanner = new Scanner(System.in);
 
-        new Thread(() -> {
+        new Thread(()  ->{
             while (!Thread.interrupted()) {
                 if (!LoginUtil.hasLogin(channel)) {
                     loginConsoleCommand.exec(scanner, channel);

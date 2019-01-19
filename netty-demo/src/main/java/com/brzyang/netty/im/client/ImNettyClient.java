@@ -10,7 +10,6 @@ import com.brzyang.netty.im.handler.ImLoginResponseHandler;
 import com.brzyang.netty.im.handler.ImMessageResponseHandler;
 import com.brzyang.netty.im.handler.Splitter;
 import com.brzyang.netty.util.LoginUtil;
-import com.brzyang.netty.util.SessionUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 

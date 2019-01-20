@@ -1,19 +1,11 @@
 package com.brzyang.netty.im.handler;
 
-import com.brzyang.netty.protocol.request.CreateGroupRequestPacket;
 import com.brzyang.netty.protocol.request.JoinGroupRequestPacket;
-import com.brzyang.netty.protocol.response.CreateGroupResponsePacket;
 import com.brzyang.netty.protocol.response.JoinGroupResponsePacket;
-import com.brzyang.netty.util.IDUtil;
 import com.brzyang.netty.util.SessionUtil;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
-import io.netty.channel.group.DefaultChannelGroup;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class JoinGroupRequestHandler extends SimpleChannelInboundHandler<JoinGroupRequestPacket> {
     @Override

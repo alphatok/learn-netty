@@ -18,7 +18,6 @@ public class SendToUserConsoleCommand implements ConsoleCommand{
     public void exec(Scanner scanner, Channel channel) {
         MessageRequestPacket messageRequest = new MessageRequestPacket();
 
-        logger.info("username/id+msg:");
         String comp = StringUtil.nonNullTrim(scanner.nextLine());
         int blankIndex = comp.indexOf(" ");
         if (blankIndex <= 0) {

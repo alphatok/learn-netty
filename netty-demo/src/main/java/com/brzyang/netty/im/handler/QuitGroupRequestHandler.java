@@ -2,7 +2,7 @@ package com.brzyang.netty.im.handler;
 
 import com.brzyang.netty.protocol.request.CreateGroupRequestPacket;
 import com.brzyang.netty.protocol.response.CreateGroupResponsePacket;
-import com.brzyang.netty.util.IDUtil;
+import com.brzyang.netty.util.IdUtil;
 import com.brzyang.netty.util.SessionUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -32,7 +32,7 @@ public class QuitGroupRequestHandler extends SimpleChannelInboundHandler<CreateG
         }
 
         // ???
-        String groupId = IDUtil.randomId();
+        String groupId = IdUtil.randomId();
         SessionUtil.bindChannelGroup(groupId, channelGroup);
 
         // 3. 创建群聊创建结果的响应

@@ -18,7 +18,7 @@ public class ImNettyServer extends BaseNettyServer {
         channels.add(new ImLogoutRequestHandler());
 //        channels.add(new ImAuthHandler());
         channels.add(new ImMessageRequestHandler());
-//        channels.add(new CreateGroupRequestHandler());
+        channels.add(new CreateGroupRequestHandler());
         channels.add(new PacketEncoder());
         initNettyServer(channels);
     }

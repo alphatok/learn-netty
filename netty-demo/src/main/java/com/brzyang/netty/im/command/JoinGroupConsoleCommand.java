@@ -1,7 +1,11 @@
 package com.brzyang.netty.im.command;
 
 import com.brzyang.netty.protocol.request.CreateGroupRequestPacket;
+import com.brzyang.netty.protocol.request.JoinGroupRequestPacket;
+import com.brzyang.netty.util.StringUtil;
 import io.netty.channel.Channel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -10,14 +14,17 @@ public class JoinGroupConsoleCommand implements ConsoleCommand{
 
     private static final String USER_ID_SPLITER = ",";
 
+    private static Logger logger = LoggerFactory.getLogger(JoinGroupConsoleCommand.class);
+
+
     @Override
     public void exec(Scanner scanner, Channel channel) {
-        CreateGroupRequestPacket createGroupRequestPacket = new CreateGroupRequestPacket();
+        JoinGroupRequestPacket joinGroupRequestPacket = new JoinGroupRequestPacket();
 
-        System.out.print("【拉人群聊】输入 userId 列表，userId 之间英文逗号隔开：");
-        String userIds = scanner.next();
-        createGroupRequestPacket.setUserIds(Arrays.asList(userIds.split(USER_ID_SPLITER)));
-        channel.writeAndFlush(createGroupRequestPacket);
+        logger.info("joinGroup, groupId:");
+        String groupId = scanner.next();
+        joinGroupRequestPacket.setGroupId(StringUtil.nonNullTrim(groupId));
+        channel.writeAndFlush(joinGroupRequestPacket);
     }
 
 }

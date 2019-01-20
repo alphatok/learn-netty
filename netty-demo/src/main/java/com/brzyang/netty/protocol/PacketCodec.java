@@ -1,9 +1,6 @@
 package com.brzyang.netty.protocol;
 
-import com.brzyang.netty.protocol.request.CreateGroupRequestPacket;
-import com.brzyang.netty.protocol.request.LoginRequestPacket;
-import com.brzyang.netty.protocol.request.LogoutRequestPacket;
-import com.brzyang.netty.protocol.request.MessageRequestPacket;
+import com.brzyang.netty.protocol.request.*;
 import com.brzyang.netty.protocol.response.*;
 import com.brzyang.netty.protocol.serialize.Serializer;
 import com.brzyang.netty.protocol.serialize.impl.JSONSerializer;
@@ -34,6 +31,8 @@ public class PacketCodec {
         packetTypeMap.put(LOGOUT_RESPONSE, LogoutResponsePacket.class);
         packetTypeMap.put(CREATE_GROUP_REQUEST, CreateGroupRequestPacket.class);
         packetTypeMap.put(CREATE_GROUP_RESPONSE, CreateGroupResponsePacket.class);
+        packetTypeMap.put(JOIN_GROUP_REQUEST, JoinGroupRequestPacket.class);
+        packetTypeMap.put(JOIN_GROUP_RESPONSE, JoinGroupResponsePacket.class);
 
         //  TODO
         serializerMap = new HashMap<>();

@@ -30,6 +30,7 @@ public class ImNettyClient extends BaseNettyClient {
         channels.add(new ImMessageResponseHandler());
         channels.add(new ImMessageForwardResponseHandler());
         channels.add(new CreateGroupResponseHandler());
+        channels.add(new JoinGroupResponseHandler());
         channels.add(new PacketEncoder());
         Channel channel = initClient(channels);
         startConsoleThread(channel);

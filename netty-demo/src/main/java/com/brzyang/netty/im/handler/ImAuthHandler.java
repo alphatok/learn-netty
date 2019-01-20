@@ -1,10 +1,15 @@
 package com.brzyang.netty.im.handler;
 
 import com.brzyang.netty.util.LoginUtil;
+import io.netty.channel.ChannelHandler;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+@Sharable
 public class ImAuthHandler extends ChannelInboundHandlerAdapter {
+    public static final ImAuthHandler INSTANCE = new ImAuthHandler();
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         if (!LoginUtil.hasLogin(ctx.channel())) {

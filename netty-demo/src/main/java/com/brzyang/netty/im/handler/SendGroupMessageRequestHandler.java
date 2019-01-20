@@ -1,20 +1,24 @@
 package com.brzyang.netty.im.handler;
 
 import com.brzyang.netty.im.bean.Session;
+import com.brzyang.netty.protocol.Packet;
 import com.brzyang.netty.protocol.request.GroupMessageRequestPacket;
 import com.brzyang.netty.protocol.request.JoinGroupRequestPacket;
 import com.brzyang.netty.protocol.response.GroupBroadcastMessageResponsePacket;
 import com.brzyang.netty.protocol.response.GroupMessageResponsePacket;
 import com.brzyang.netty.protocol.response.JoinGroupResponsePacket;
 import com.brzyang.netty.util.SessionUtil;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Sharable
 public class SendGroupMessageRequestHandler extends SimpleChannelInboundHandler<GroupMessageRequestPacket> {
 
+    public static final SendGroupMessageRequestHandler INSTANCE = new SendGroupMessageRequestHandler();
     private static Logger logger = LoggerFactory.getLogger(SendGroupMessageRequestHandler.class);
 
     @Override

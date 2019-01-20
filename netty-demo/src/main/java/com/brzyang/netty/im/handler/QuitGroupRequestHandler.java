@@ -1,6 +1,7 @@
 package com.brzyang.netty.im.handler;
 
 import com.brzyang.netty.im.bean.Session;
+import com.brzyang.netty.protocol.Packet;
 import com.brzyang.netty.protocol.request.CreateGroupRequestPacket;
 import com.brzyang.netty.protocol.request.QuitGroupRequestPacket;
 import com.brzyang.netty.protocol.response.CreateGroupResponsePacket;
@@ -8,6 +9,7 @@ import com.brzyang.netty.protocol.response.QuitGroupResponsePacket;
 import com.brzyang.netty.util.IdUtil;
 import com.brzyang.netty.util.SessionUtil;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
@@ -18,8 +20,10 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+@Sharable
 public class QuitGroupRequestHandler extends SimpleChannelInboundHandler<QuitGroupRequestPacket> {
 
+    public static final QuitGroupRequestHandler INSTANCE = new QuitGroupRequestHandler();
     private static Logger logger = LoggerFactory.getLogger(QuitGroupRequestHandler.class);
 
 

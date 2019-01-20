@@ -16,13 +16,14 @@ public class ImNettyServer extends BaseNettyServer {
         channels.add(new PacketDecoder());
         channels.add(new ImLoginRequestHandler());
         channels.add(new ImLogoutRequestHandler());
-//        channels.add(new ImAuthHandler());
+        channels.add(new ImAuthHandler());
         channels.add(new ImMessageRequestHandler());
         channels.add(new CreateGroupRequestHandler());
         channels.add(new JoinGroupRequestHandler());
         channels.add(new QuitGroupRequestHandler());
         channels.add(new ListGroupMembersRequestHandler());
         channels.add(new SendGroupMessageRequestHandler());
+
         channels.add(new PacketEncoder());
         initNettyServer(channels);
     }

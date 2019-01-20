@@ -5,15 +5,19 @@ import com.brzyang.netty.protocol.request.LoginRequestPacket;
 import com.brzyang.netty.protocol.response.LoginResponsePacket;
 import com.brzyang.netty.util.LoginUtil;
 import com.brzyang.netty.util.SessionUtil;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+@Sharable
 public class ImLoginRequestHandler extends SimpleChannelInboundHandler<LoginRequestPacket> {
 
     private static Logger logger = LoggerFactory.getLogger(ImLoginRequestHandler.class);
+
+    public static final ImLoginRequestHandler INSTANCE = new ImLoginRequestHandler();
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket msg) throws Exception {

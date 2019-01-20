@@ -1,10 +1,12 @@
 package com.brzyang.netty.im.handler;
 
+import com.brzyang.netty.protocol.Packet;
 import com.brzyang.netty.protocol.request.CreateGroupRequestPacket;
 import com.brzyang.netty.protocol.response.CreateGroupResponsePacket;
 import com.brzyang.netty.util.IdUtil;
 import com.brzyang.netty.util.SessionUtil;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
@@ -15,8 +17,10 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+@Sharable
 public class CreateGroupRequestHandler extends SimpleChannelInboundHandler<CreateGroupRequestPacket> {
 
+    public static final CreateGroupRequestHandler INSTANCE = new CreateGroupRequestHandler();
     private static Logger logger = LoggerFactory.getLogger(CreateGroupRequestHandler.class);
 
     @Override

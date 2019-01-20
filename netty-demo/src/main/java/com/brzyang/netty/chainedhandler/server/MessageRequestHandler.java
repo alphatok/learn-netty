@@ -1,13 +1,18 @@
 package com.brzyang.netty.chainedhandler.server;
 
+import com.brzyang.netty.protocol.Packet;
 import com.brzyang.netty.protocol.request.MessageRequestPacket;
 import com.brzyang.netty.protocol.response.MessageResponsePacket;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 import java.util.Date;
 
+@Sharable
 public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRequestPacket> {
+    public static final MessageRequestHandler INSTANCE = new MessageRequestHandler();
+
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, MessageRequestPacket msg) throws Exception {
 //        MessageResponsePacket messageResponsePacket = receiveMessage(msg);

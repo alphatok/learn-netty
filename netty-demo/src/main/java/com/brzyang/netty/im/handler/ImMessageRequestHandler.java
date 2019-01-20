@@ -1,19 +1,23 @@
 package com.brzyang.netty.im.handler;
 
 import com.brzyang.netty.im.bean.Session;
+import com.brzyang.netty.protocol.Packet;
 import com.brzyang.netty.protocol.request.MessageRequestPacket;
 import com.brzyang.netty.protocol.response.MessageForwardResponsePacket;
 import com.brzyang.netty.protocol.response.MessageResponsePacket;
 import com.brzyang.netty.util.LoginUtil;
 import com.brzyang.netty.util.SessionUtil;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Sharable
 public class ImMessageRequestHandler extends SimpleChannelInboundHandler<MessageRequestPacket> {
 
+    public static final ImMessageRequestHandler INSTANCE = new ImMessageRequestHandler();
     private static Logger logger = LoggerFactory.getLogger(ImMessageRequestHandler.class);
 
     @Override

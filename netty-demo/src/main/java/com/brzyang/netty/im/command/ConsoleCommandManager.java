@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class ConsoleCommandManager implements ConsoleCommand{
@@ -33,6 +34,9 @@ public class ConsoleCommandManager implements ConsoleCommand{
             consoleCommand.exec(scanner, channel);
         } else {
             logger.error("unknown command:{} try again!", command);
+            for (Entry<String, ConsoleCommand> commandEntry : consoleCommandMap.entrySet()) {
+                logger.info("command:{}", commandEntry.getKey());
+            }
         }
     }
 }

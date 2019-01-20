@@ -19,7 +19,7 @@ public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRe
 
     private MessageResponsePacket receiveMessage(MessageRequestPacket msg) {
         MessageResponsePacket messageResponsePacket = new MessageResponsePacket();
-        messageResponsePacket.setMessage("服务端回复【" + msg.getMessage() + "】 ack");
+        messageResponsePacket.setResult("服务端回复【" + msg.getMessage() + "】 ack");
         return messageResponsePacket;
     }
 }

@@ -3,8 +3,8 @@ package com.brzyang.netty.protocol.response;
 import com.brzyang.netty.protocol.Packet;
 import com.brzyang.netty.protocol.command.Command;
 
-public class MessageResponsePacket extends Packet {
-    private String result;
+public class MessageForwardResponsePacket extends Packet {
+    private String message;
     private String fromUserId;
     private String fromUsername;
     private String dstUserId;
@@ -42,16 +42,16 @@ public class MessageResponsePacket extends Packet {
         this.fromUsername = fromUsername;
     }
 
-    public String getResult() {
-        return result;
+    public String getMessage() {
+        return message;
     }
 
-    public void setResult(String result) {
-        this.result = result;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     @Override
     public Byte getCommand() {
-        return Command.MESSAGE_RESPONSE;
+        return Command.MESSAGE_FORWARD_RESPONSE;
     }
 }

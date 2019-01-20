@@ -19,27 +19,13 @@ public class ImLoginResponseHandler extends SimpleChannelInboundHandler<LoginRes
     protected void channelRead0(ChannelHandlerContext ctx, LoginResponsePacket msg) throws Exception {
 
         if (msg.getSuccess()) {
-            logger.info("userId:{}  username:{} login succ", msg.getUserId(), msg.getUsername());
             LoginUtil.markAsLogin(ctx.channel());
+            logger.info("userId:{}  username:{} login succ", msg.getUserId(), msg.getUsername());
         } else {
             logger.error("userId:{}  username:{} login failed, reason:{}",
                     msg.getUserId(), msg.getUsername(), msg.getReason());
         }
     }
-
-//
-//    /**抽象为单独的Handler**/
-//    @Override
-//    public void channelActive(ChannelHandlerContext ctx) {
-//        // 创建登录对象
-//        LoginRequestPacket loginRequestPacket = new LoginRequestPacket();
-//        loginRequestPacket.setUserId(String.valueOf(new Random().nextInt()));
-//        loginRequestPacket.setUsername("flash");
-//        loginRequestPacket.setPassword("pwd");
-//
-//        // 写数据
-//        ctx.channel().writeAndFlush(loginRequestPacket);
-//    }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {

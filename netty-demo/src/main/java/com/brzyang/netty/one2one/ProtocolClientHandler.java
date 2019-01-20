@@ -48,7 +48,7 @@ public class ProtocolClientHandler extends ChannelInboundHandlerAdapter {
             }
         }else if (packet instanceof MessageResponsePacket) {
             MessageResponsePacket messageResponsePacket = (MessageResponsePacket) packet;
-            System.out.println(new Date() + ": 收到服务端的消息: " + messageResponsePacket.getMessage());
+            System.out.println(new Date() + ": 收到服务端的消息: " + messageResponsePacket.getResult());
         }
     }
 }

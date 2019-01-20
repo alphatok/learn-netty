@@ -48,7 +48,7 @@ public class ProtocolServerHandler extends ChannelInboundHandlerAdapter {
             System.out.println(new Date() + ": 收到客户端消息: " + messageRequestPacket.getMessage());
 
             MessageResponsePacket messageResponsePacket = new MessageResponsePacket();
-            messageResponsePacket.setMessage("服务端回复【" + messageRequestPacket.getMessage() + "】 ack");
+            messageResponsePacket.setResult("服务端回复【" + messageRequestPacket.getMessage() + "】 ack");
             ByteBuf responseByteBuf = PacketCodec.INSTANCE.encode(ctx.alloc(), messageResponsePacket);
             ctx.channel().writeAndFlush(responseByteBuf);
         }

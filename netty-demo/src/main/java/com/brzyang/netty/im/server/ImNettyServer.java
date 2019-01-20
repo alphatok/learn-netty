@@ -22,6 +22,7 @@ public class ImNettyServer extends BaseNettyServer {
         channels.add(new JoinGroupRequestHandler());
         channels.add(new QuitGroupRequestHandler());
         channels.add(new ListGroupMembersRequestHandler());
+        channels.add(new SendGroupMessageRequestHandler());
         channels.add(new PacketEncoder());
         initNettyServer(channels);
     }

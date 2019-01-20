@@ -37,6 +37,9 @@ public class PacketCodec {
         packetTypeMap.put(QUIT_GROUP_RESPONSE, QuitGroupResponsePacket.class);
         packetTypeMap.put(LIST_GROUP_REQUEST, ListGroupMembersRequestPacket.class);
         packetTypeMap.put(LIST_GROUP_RESPONSE, ListGroupMembersResponsePacket.class);
+        packetTypeMap.put(GROUP_MESSAGE_REQUEST, GroupMessageRequestPacket.class);
+        packetTypeMap.put(GROUP_MESSAGE_RESPONSE, GroupMessageResponsePacket.class);
+        packetTypeMap.put(GROUP_MESSAGE_BROADCAST_RESPONSE, GroupBroadcastMessageResponsePacket.class);
 
         //  TODO
         serializerMap = new HashMap<>();

@@ -20,4 +20,9 @@ public interface Command {
     Byte LOGOUT_RESPONSE = 14;
 
     Byte MESSAGE_FORWARD_RESPONSE = 15;
+
+    Byte GROUP_MESSAGE_REQUEST = 16;
+    Byte GROUP_MESSAGE_RESPONSE = 17;
+    Byte GROUP_MESSAGE_BROADCAST_RESPONSE = 18;
+
 }

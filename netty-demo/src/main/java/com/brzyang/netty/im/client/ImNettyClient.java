@@ -23,6 +23,8 @@ public class ImNettyClient extends BaseNettyClient {
 
     public static void main(String[] args) {
         List<ChannelHandler> channels = new ArrayList<>();
+        channels.add(new ImIdleStateHandler());
+        channels.add(new HeartBeatTimerHandler());
         channels.add(new Splitter());
         channels.add(new PacketDecoder());
         channels.add(new ImLoginResponseHandler());
@@ -36,6 +38,8 @@ public class ImNettyClient extends BaseNettyClient {
         channels.add(new GroupBroadcastMessageResponseHandler());
         channels.add(new SendGroupMessageResponseHandler());
         channels.add(new PacketEncoder());
+        channels.add(new HeartBeatTimerHandler());
+        channels.add(new HeartBeatResponseHandler());
         Channel channel = initClient(channels);
         startConsoleThread(channel);
     }

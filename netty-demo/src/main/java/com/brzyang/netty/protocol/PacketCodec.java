@@ -40,6 +40,8 @@ public class PacketCodec {
         packetTypeMap.put(GROUP_MESSAGE_REQUEST, GroupMessageRequestPacket.class);
         packetTypeMap.put(GROUP_MESSAGE_RESPONSE, GroupMessageResponsePacket.class);
         packetTypeMap.put(GROUP_MESSAGE_BROADCAST_RESPONSE, GroupBroadcastMessageResponsePacket.class);
+        packetTypeMap.put(HEARBEAT_REQUEST, HeartBeatRequestPacket.class);
+        packetTypeMap.put(HEARBEAT_RESPONSE, HeartBeatResponsePacket.class);
 
         //  TODO
         serializerMap = new HashMap<>();

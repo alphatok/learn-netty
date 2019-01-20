@@ -25,4 +25,7 @@ public interface Command {
     Byte GROUP_MESSAGE_RESPONSE = 17;
     Byte GROUP_MESSAGE_BROADCAST_RESPONSE = 18;
 
+    Byte HEARBEAT_REQUEST = 19;
+    Byte HEARBEAT_RESPONSE = 20;
+
 }

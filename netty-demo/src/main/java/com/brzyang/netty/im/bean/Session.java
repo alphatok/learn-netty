@@ -24,4 +24,12 @@ public class Session {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    @Override
+    public String toString() {
+        return "Session{" +
+                "userId='" + userId + '\'' +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }
